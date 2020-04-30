@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <p>You are logged in!</p>
+                    @if (auth()->user()->isAdmin())
+                        <p><a href="{{ route('admin.home') }}">Admin Panel</a></p>
+                    @endif
                 </div>
             </div>
         </div>
