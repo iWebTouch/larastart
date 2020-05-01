@@ -51,7 +51,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Manage Transactions:</h6>
-            <a class="collapse-item" href="utilities-color.html">Transactions</a>
+            <a class="collapse-item" href="#">Transactions</a>
           </div>
         </div>
       </li>
@@ -66,14 +66,14 @@
 
       <!-- Nav Item -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-cog"></i>
           <span>App Settings</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-file"></i>
           <span>Custom Pages</span></a>
       </li>
