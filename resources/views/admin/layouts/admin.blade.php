@@ -72,9 +72,7 @@
                     </nav>
                     <!-- End of Topbar -->
 
-                    <div id="app">
                     @yield('content')
-                    </div>
     
                 </div>
                 <!-- End of Main Content -->
