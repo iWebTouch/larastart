@@ -32,10 +32,10 @@ Route::prefix('/admin')->middleware('admin')->namespace('Admin')->group(function
         Route::get('/data', 'UserController@data')->name('users.data');
 
         Route::get('/new', 'UserController@add')->name('add.user');
-        Route::post('/new', 'UserController@store')->name('create.user');
-        Route::get('/{id}', 'UserController@edit')->name('edit.user');
-        Route::put('/{id}', 'UserController@update')->name('update.user');
-        Route::delete('/{id}', 'UserController@destroy')->name('delete.user');  
+        Route::post('/', 'UserController@store')->name('create.user');
+        Route::get('/{user}/edit', 'UserController@edit')->name('edit.user');
+        Route::put('/{user}', 'UserController@update')->name('update.user');
+        Route::delete('/{user}', 'UserController@destroy')->name('delete.user');  
     });
 
 });

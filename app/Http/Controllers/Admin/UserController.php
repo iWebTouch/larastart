@@ -14,6 +14,23 @@ class UserController extends Controller
         return view('admin/users');
     }
 
+    public function edit(User $user)
+    {
+        return view('admin/user', ['user' => $user]);
+    }
+
+    public function update(User $user, Request $request)
+    {
+        $request->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email'
+        ]);
+
+        $user->update($request->all());
+        
+        return back()->with('status', 'Data has been saved.');
+    }
+
     public function data()
     {
         $users = User::select(['id', 'name', 'email', 'is_admin']);
