@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DataTables;
 use App\User;
+use Hash;
 
 class UserController extends Controller
 {
@@ -14,19 +15,60 @@ class UserController extends Controller
         return view('admin/users');
     }
 
+    public function add()
+    {
+        return view('admin/user', [
+            'page' => ['title' => 'Add User'],
+            'form' => ['action' => route('create.user'), 'method' => 'POST'],
+            'user' => null,
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'passwd' => 'required|min:4',
+            'passwd_confirmation' => 'same:passwd'
+        ]);
+
+        if ($request->input('passwd') == '') {
+            $inputs = $request->except('passwd');
+        } else {
+            $inputs = $request->all();
+            $inputs['password'] = Hash::make($inputs['passwd']);
+        }
+        User::create($inputs);
+
+        return redirect()->route('manage.users');
+    }
+
     public function edit(User $user)
     {
-        return view('admin/user', ['user' => $user]);
+        return view('admin/user', [
+            'page' => ['title' => 'Edit User'],
+            'form' => ['action' => route('update.user', $user->id), 'method' => 'PUT'], 
+            'user' => $user
+        ]);
     }
 
     public function update(User $user, Request $request)
     {
         $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email'
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'passwd' => 'nullable|min:4',
+            'passwd_confirmation' => 'same:passwd'
         ]);
 
-        $user->update($request->all());
+        if ($request->input('passwd') == '') {
+            $inputs = $request->except('passwd');
+        } else {
+            $inputs = $request->all();
+            $inputs['password'] = Hash::make($inputs['passwd']);
+        }
+        $user->update($inputs);
         
         return back()->with('status', 'Data has been saved.');
     }
