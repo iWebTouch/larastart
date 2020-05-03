@@ -19,8 +19,6 @@
         </tr>
         </thead>
     </table>
-
-
 </div>
 <!-- /.container-fluid -->
 
@@ -39,8 +37,15 @@ $(function() {
             { data: 'role', name: 'role' },
             { data: 'status', name: 'status' },
             { data: 'action', name: 'action', orderable: false, searchable: false}
-        ]
+        ],
+        "fnDrawCallback": function() {
+            http_handler.initialize();
+        }
     });
 });
 </script>
+@endpush
+
+@push('scripts')
+<script src="{{ asset('js/http-handler.js') }}"></script>
 @endpush

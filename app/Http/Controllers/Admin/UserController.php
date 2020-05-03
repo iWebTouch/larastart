@@ -73,6 +73,14 @@ class UserController extends Controller
         return back()->with('status', 'Data has been saved.');
     }
 
+
+    public function destroy(User $user)
+    {
+        //$user->delete();
+
+        return back();
+    }
+
     public function data()
     {
         $users = User::select(['id', 'name', 'email', 'is_admin']);
@@ -82,7 +90,10 @@ class UserController extends Controller
                     return '<a href="'.route('edit.user', $user->id).'" class="btn btn-sm btn-success">
                                 <i class="fa fa-pen"></i> Edit
                             </a>
-                            <a href="'.route('delete.user', $user->id).'" class="btn btn-sm btn-danger">
+                            <a href="'.route('delete.user', $user->id).'" class="btn btn-sm btn-danger" 
+                                data-method="DELETE" 
+                                data-confirm="Are you sure want to delete?" 
+                                data-token="'.csrf_token().'">
                                 <i class="fa fa-times"></i> Delete
                             </a>';
                 })
