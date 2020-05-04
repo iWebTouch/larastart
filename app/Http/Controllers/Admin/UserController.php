@@ -83,7 +83,7 @@ class UserController extends Controller
 
     public function data()
     {
-        $users = User::select(['id', 'name', 'email', 'is_admin']);
+        $users = User::select(['id', 'name', 'email', 'is_admin', 'status']);
         
         return DataTables::of($users)
                 ->addColumn('action', function($user) {
@@ -100,7 +100,9 @@ class UserController extends Controller
                 ->addColumn('role', function($user) {
                     return $user->is_admin == 1? 'Admin' : '';
                 })
-                ->addColumn('status', 'Active')
+                ->editColumn('status', function($user) { 
+                    return User::$statuses[$user->status]; 
+                })
                 ->make(true);
     }
 }

@@ -15,6 +15,7 @@ class AlterUsersRole extends Migration
     {
         Schema::table('users', function(Blueprint $table) {
             $table->boolean('is_admin')->default(false)->after('password');
+            $table->enum('status', ['active', 'inactive'])->default('active')->after('password');
         });
     }
 
@@ -27,6 +28,7 @@ class AlterUsersRole extends Migration
     {
         Schema::table('users', function(Blueprint $table) {
             $table->dropColumn('is_admin');
+            $table->dropColumn('status');
         });
     }
 }

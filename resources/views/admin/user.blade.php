@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label form="email" class="col-sm-3 col-form-label">Email:</label>
+            <label for="email" class="col-sm-3 col-form-label">Email:</label>
             <div class="col-sm-9 col-lg-8">
                 <input type="text" name="email" value="{{ old('email', is_null($user)? '' : $user->email) }}" class="form-control @error('email') is-invalid @enderror" />
                 @error('email')
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label form="password" class="col-sm-3 col-form-label">Password:</label>
+            <label for="password" class="col-sm-3 col-form-label">Password:</label>
             <div class="col-sm-9 col-lg-8">
                 <input type="text" name="passwd" value="{{ old('passwd') }}" class="form-control @error('passwd') is-invalid @enderror" />
                 @error('passwd')
@@ -70,12 +70,22 @@
             </div>
         </div>
         <div class="form-group row">
-            <label form="passwd_confirmation" class="col-sm-3 col-form-label">Confirm Password:</label>
+            <label for="passwd_confirmation" class="col-sm-3 col-form-label">Confirm Password:</label>
             <div class="col-sm-9 col-lg-8">
                 <input type="text" name="passwd_confirmation" value="{{ old('passwd_confirmation') }}" class="form-control @error('passwd_confirmation') is-invalid @enderror" />
                 @error('passwd_confirmation')
                 <div class="invalid-feedback">{{ $errors->first('passwd_confirmation') }}</div>
                 @enderror
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="status" class="col-sm-3 col-form-label">Status:</label>
+            <div class="col-xs-9 col-sm-6 col-lg-4">
+                <select id="status" name="status" class="form-control">
+                    @foreach (App\User::$statuses as $k => $v)
+                        <option value="{{ $k }}" {{ !is_null($user) && $k == $user->status? 'selected="selected"':'' }}>{{ $v }}</option>    
+                    @endforeach
+                </select>
             </div>
         </div>
         
