@@ -14,6 +14,7 @@ class AlterUsersRole extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
+            $table->string('avatar')->nullable()->after('password');
             $table->boolean('is_admin')->default(false)->after('password');
             $table->enum('status', ['active', 'inactive'])->default('active')->after('password');
         });
@@ -27,6 +28,7 @@ class AlterUsersRole extends Migration
     public function down()
     {
         Schema::table('users', function(Blueprint $table) {
+            $table->dropColumn('avatar');
             $table->dropColumn('is_admin');
             $table->dropColumn('status');
         });
