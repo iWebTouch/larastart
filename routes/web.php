@@ -21,6 +21,11 @@ Auth::routes();
 
 Route::middleware('auth')->group(function() {
     Route::get('/home', 'HomeController@index')->name('user.home');
+
+    Route::get('/profile/edit', 'UserController@edit')->name('edit.profile');
+    Route::put('/profile/edit', 'UserController@update')->name('update.profile');
+    Route::get('/profile/{id}', 'UserController@show')->name('show.profile');
+
 });
 
 Route::prefix('/admin')->middleware('admin')->namespace('Admin')->group(function() {

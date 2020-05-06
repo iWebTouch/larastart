@@ -58,6 +58,8 @@
                                     <a class="dropdown-item" href="{{ route('admin.home') }}">Admin Panel</a>
                                     @endif
 
+                                    <a class="dropdown-item" href="{{ route('edit.profile') }}">Edit Profile</a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
