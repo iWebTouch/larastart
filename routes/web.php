@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function() {
 Route::prefix('/admin')->middleware('admin')->namespace('Admin')->group(function() {
 
     Route::get('/', 'AdminController@index')->name('admin.home');
+    Route::get('/settings', 'AdminController@settings')->name('app.settings');
+    Route::put('/settings', 'AdminController@updateSettings')->name('update.settings');
 
     Route::prefix('users')->group(function() {
         Route::get('/', 'UserController@index')->name('manage.users');

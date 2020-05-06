@@ -66,7 +66,7 @@
 
       <!-- Nav Item -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('app.settings') }}">
           <i class="fas fa-fw fa-cog"></i>
           <span>App Settings</span></a>
       </li>
