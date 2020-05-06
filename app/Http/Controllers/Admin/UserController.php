@@ -70,7 +70,7 @@ class UserController extends Controller
         }
         $user->update($inputs);
         
-        return back()->with('status', 'Data has been saved.');
+        return back()->with('status', 'Data have been saved.');
     }
 
 
