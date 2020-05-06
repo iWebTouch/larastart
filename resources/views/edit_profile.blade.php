@@ -22,7 +22,7 @@
                     </div>
                     @endif
     
-                    <form method="POST" action="{{ route('edit.profile') }}">
+                    <form method="POST" action="{{ route('edit.profile') }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -62,7 +62,25 @@
                             @enderror
                         </div>
                     </div>
-                            
+                    <div class="form-group row">
+                        <label for="avatar" class="col-md-3 col-form-label">Avatar:</label>
+                        <div class="col-md-9 col-lg-8">
+                            <input type="file" name="avatar" />
+                            @error('avatar')
+                            <div class="invalid-feedback">{{ $errors->first('avatar') }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    @if($user->avatar != '')
+                    <div class="form-group row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9 col-lg-8">
+                            <img src="{{ asset('imgs') .'/'. $user->avatar }}" width="150" height="150">
+                        </div>
+                    </div>
+                    @endif
+
                     <input type="submit" class="btn btn-primary" value="Save" />
                     </form>
                 </div>

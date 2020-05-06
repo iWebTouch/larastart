@@ -33,6 +33,12 @@ class UserController extends Controller
             'passwd_confirmation' => 'same:passwd'
         ]);
 
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $user->avatar = 'ava-'.str_pad($user->id,10,'0',STR_PAD_LEFT).'.'.$avatar->getClientOriginalExtension();
+            $avatar->move(public_path('imgs/'), $user->avatar);
+        }
+
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         if ($request->input('passwd') != '') {
