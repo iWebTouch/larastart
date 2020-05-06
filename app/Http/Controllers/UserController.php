@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Hash;
+use Image;
 
 class UserController extends Controller
 {
@@ -37,6 +38,8 @@ class UserController extends Controller
             $avatar = $request->file('avatar');
             $user->avatar = 'ava-'.str_pad($user->id,10,'0',STR_PAD_LEFT).'.'.$avatar->getClientOriginalExtension();
             $avatar->move(public_path('imgs/'), $user->avatar);
+
+            Image::make(public_path('imgs/') . $user->avatar)->resize(150,150)->save();
         }
 
         $user->name = $request->input('name');
