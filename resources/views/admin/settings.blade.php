@@ -23,7 +23,7 @@
     @endif
    
 
-    <form method="POST" action="{{ route('update.settings') }}">
+    <form method="POST" action="{{ route('update.settings') }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
         
@@ -45,6 +45,24 @@
                 @enderror
             </div>
         </div>
+        <div class="form-group row">
+            <label for="logo" class="col-md-3 col-form-label">Logo:</label>
+            <div class="col-md-9 col-lg-8">
+                <input type="file" name="logo" />
+                @error('logo')
+                <div class="invalid-feedback">{{ $errors->first('logo') }}</div>
+                @enderror
+            </div>
+        </div>
+
+        @if($settings->logo != '')
+        <div class="form-group row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9 col-lg-8">
+                <img src="{{ asset('imgs') .'/'. $settings->logo }}" width="300">
+            </div>
+        </div>
+        @endif
 
         <input type="submit" class="btn btn-primary" value="Save" />
     </form>
