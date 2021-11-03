@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Settings;
+use App\Setting;
 use Image;
 
 class AdminController extends Controller
@@ -16,14 +16,14 @@ class AdminController extends Controller
 
     public function settings()
     {
-        $settings = Settings::firstOrNew([]);
+        $settings = Setting::firstOrNew([]);
 
         return view('admin/settings', ['settings' => $settings]);
     }
 
     public function updateSettings(Request $request)
     {
-        $settings = Settings::firstOrNew([]);
+        $settings = Setting::firstOrNew([]);
 
         if ($request->hasFile('logo')) {
             $logo = $request->file('logo');
