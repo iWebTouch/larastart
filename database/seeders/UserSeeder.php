@@ -1,6 +1,9 @@
 <?php
+namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -14,7 +17,7 @@ class UserSeeder extends Seeder
         DB::table('users')->delete();
 
         // create admin user
-        factory(App\User::class)->create([
+        User::factory()->create([
             'name' => 'Administrator',
             'email' => 'admin@site.com',
             'is_admin' => 1
