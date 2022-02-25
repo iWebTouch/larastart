@@ -82,7 +82,7 @@
             <label for="status" class="col-sm-3 col-form-label">Status:</label>
             <div class="col-xs-9 col-sm-6 col-lg-4">
                 <select id="status" name="status" class="form-control">
-                    @foreach (App\User::$statuses as $k => $v)
+                    @foreach ($user_statuses as $k => $v)
                         <option value="{{ $k }}" {{ !is_null($user) && $k == $user->status? 'selected="selected"':'' }}>{{ $v }}</option>    
                     @endforeach
                 </select>

@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
-Auth::routes();
+require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function() {
     Route::get('/home', 'HomeController@index')->name('user.home');
@@ -42,7 +42,7 @@ Route::prefix('/admin')->middleware('admin')->namespace('Admin')->group(function
         Route::post('/', 'UserController@store')->name('create.user');
         Route::get('/{user}/edit', 'UserController@edit')->name('edit.user');
         Route::put('/{user}', 'UserController@update')->name('update.user');
-        Route::delete('/{user}', 'UserController@destroy')->name('delete.user');  
+        Route::delete('/{user}', 'UserController@destroy')->name('delete.user');
     });
 
 });

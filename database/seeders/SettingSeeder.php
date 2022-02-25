@@ -1,6 +1,9 @@
 <?php
+namespace Database\Seeders;
 
+use App\Models\Setting;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class SettingSeeder extends Seeder
 {
@@ -14,9 +17,10 @@ class SettingSeeder extends Seeder
         DB::table('settings')->delete();
 
         // create admin user
-        factory(App\Setting::class)->create([
+        Setting::create([
             'name' => 'MyWebApp',
-            'email' => 'admin@site.com'
+            'email' => 'admin@site.com',
+            'logo' => 'site_logo.png',
         ]);
 
     }

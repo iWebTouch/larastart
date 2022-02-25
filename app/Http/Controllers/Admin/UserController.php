@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DataTables;
-use App\User;
 use Hash;
 
 class UserController extends Controller
@@ -21,6 +21,7 @@ class UserController extends Controller
             'page' => ['title' => 'Add User'],
             'form' => ['action' => route('create.user'), 'method' => 'POST'],
             'user' => null,
+            'user_statuses' => User::$statuses,
         ]);
     }
 
@@ -49,7 +50,8 @@ class UserController extends Controller
         return view('admin/user', [
             'page' => ['title' => 'Edit User'],
             'form' => ['action' => route('update.user', $user->id), 'method' => 'PUT'], 
-            'user' => $user
+            'user' => $user,
+            'user_statuses' => User::$statuses,
         ]);
     }
 
